@@ -21,7 +21,7 @@ public class Duke {
                 int count = 0;
                 for (count = 0; count < thingsCounted; count++) {
                     System.out.print(String.format("%d. ",count+1));
-                    System.out.println(tasks[count].getStatusIcon() + thingsToDo[count]);
+                    System.out.println('[' + tasks[count].getStatusIcon() + ']' + thingsToDo[count]);
                 }
                 System.out.println(horizontalLine);
             }
