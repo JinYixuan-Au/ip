@@ -2,9 +2,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 public class Duke {
     static String horizontalLine = "--------------------------------------------------";
-    static String[] thingsToDo = new String[100];
     static int thingsCounted = 0;
-    static Task [] tasks=new Task[100];
+    static Task[] tasks = new Task[100];
 
     public static void main(String[] args) {
         System.out.println(horizontalLine + "\nHello! I'm Duke\n" + "What can I do for you?\n" + horizontalLine);
@@ -20,33 +19,74 @@ public class Duke {
             if (text.equals("list")) {
                 int count = 0;
                 for (count = 0; count < thingsCounted; count++) {
-                    System.out.print(String.format("%d. ",count+1));
-                    System.out.println('[' + tasks[count].getStatusIcon() + ']' + thingsToDo[count]);
+                    System.out.print(count + 1 + '.');
+                    System.out.println(tasks[count]);
                 }
                 System.out.println(horizontalLine);
-            }
-            else if(text.contains("done")){
+            } else if (text.contains("done")) {
                 int index = Integer.parseInt(text.substring(5));
                 doneTask(index);
-            }
-            else {
-                System.out.println("added: " + text);
-                thingsToDo[thingsCounted] = text;
-                Task task = new Task(text);
-                tasks[thingsCounted] = task;
-                thingsCounted++;
+            } else {
+                if (text.contains("todo")) {
+                    addTodoTask(text);
+                } else if (text.contains("deadline")) {
+                    addDeadlineTask(text);
+                } else {
+                    addEventTask(text);
+                }
+                System.out.println(horizontalLine);
+                text = in.nextLine();
             }
             System.out.println(horizontalLine);
-            text = in.nextLine();
+            System.out.println("Bye. Hope to see you again soon");
+            System.out.println(horizontalLine);
         }
-        System.out.println(horizontalLine);
-        System.out.println("Bye. Hope to see you again soon");
-        System.out.println(horizontalLine);
     }
+
+    public static void addTodoTask(String text){
+        String todoDescription;
+        todoDescription = text.substring(5);
+        Task task = new Todo(todoDescription);
+        tasks[thingsCounted] = task;
+        thingsCounted++;
+        printTask(task);
+    }
+
+    public static void addDeadlineTask(String text){
+        String deadlineDescription;
+        String deadlineByDate;
+        int getIndex;
+        getIndex = text.indexOf("/");
+        deadlineDescription = text.substring(9, getIndex - 1);
+        deadlineByDate = text.substring(getIndex + 4);
+        Task task = new Deadline(deadlineDescription, deadlineByDate);
+        tasks[thingsCounted] = task;
+        thingsCounted++;
+        printTask(task);
+    }
+
+    public static void addEventTask(String text){
+        String eventDescription;
+        String eventAtDate;
+        int getIndex;
+        getIndex = text.indexOf("/");
+        eventDescription = text.substring(6, getIndex - 1);
+        eventAtDate = text.substring(getIndex + 4);
+        Task task = new Event(eventDescription, eventAtDate);
+        tasks[thingsCounted] = task;
+        thingsCounted++;
+        printTask(task);
+    }
+
+    public static void printTask(Task task){
+        System.out.println("Got it. I've added this task: ");
+        System.out.println(task);
+        System.out.println("Now you have " + thingsCounted + " tasks in the list.");
+    }
+
 
     public static void doneTask(int index){
-        tasks[index-1].taskDone();
-        System.out.println("Nice! I've marked this task as done:\n" +tasks[index-1].getStatusIcon()+thingsToDo[index-1]);
+        tasks[index - 1].taskDone();
+        System.out.println("Nice! I've marked this task as done:\n" + tasks[index - 1]);
     }
 }
-
