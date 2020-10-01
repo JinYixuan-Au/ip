@@ -7,7 +7,7 @@ public class Event extends Task{
     }
 
     public String getTypeIcon(){
-        return "[D]";
+        return "[E]";
     }
 
     public String toString(){
