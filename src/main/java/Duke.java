@@ -42,16 +42,16 @@ public class Duke {
     public static void dealWithException(String text){
         switch (text) {
             case "todo":
-                System.out.println("The description of a todo cannot be empty.");
+                System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
                 break;
             case "deadline":
-                System.out.println("The description of a deadline cannot be empty.");
+                System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
                 break;
             case "event":
-                System.out.println("The description of a event cannot be empty.");
+                System.out.println("☹ OOPS!!! The description of a event cannot be empty.");
                 break;
             default:
-                System.out.println(("Sorry, I don't know what this means."));
+                System.out.println(("☹ OOPS!!! I'm sorry, but I don't know what that means :-("));
                 break;
         }
     }
