@@ -5,11 +5,6 @@ public class Duke {
     static int thingsCounted = 0;
     static Task[] tasks = new Task[100];
 
-    public static void main(String[] args) {
-        System.out.println(horizontalLine + "\nHello! I'm Duke\n" + "What can I do for you?\n" + horizontalLine);
-        storeTextAndList();
-    }
-
     public static void storeTextAndList() {
         String text;
         Scanner in = new Scanner(System.in);
@@ -17,12 +12,7 @@ public class Duke {
         while (!text.equals("bye")) {
             System.out.println(horizontalLine);
             if (text.equals("list")) {
-                int count = 0;
-                for (count = 0; count < thingsCounted; count++) {
-                    System.out.print(count + 1 + '.');
-                    System.out.println(tasks[count]);
-                }
-                System.out.println(horizontalLine);
+                listTask();
             } else if (text.contains("done")) {
                 int index = Integer.parseInt(text.substring(5));
                 doneTask(index);
@@ -88,5 +78,19 @@ public class Duke {
     public static void doneTask(int index){
         tasks[index - 1].taskDone();
         System.out.println("Nice! I've marked this task as done:\n" + tasks[index - 1]);
+    }
+
+    public static void listTask(){
+        System.out.println(horizontalLine);
+        System.out.println("Here are the tasks in your list:");
+        for (int count = 0; count < thingsCounted; count++) {
+            System.out.println((count+1)+"."+tasks[count]);
+        }
+        System.out.println(horizontalLine);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(horizontalLine + "\nHello! I'm Duke\n" + "What can I do for you?\n" + horizontalLine);
+        storeTextAndList();
     }
 }

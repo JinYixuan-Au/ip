@@ -12,6 +12,6 @@ public class Deadline extends Task {
     }
 
     public String toString(){
-        return this.getTypeIcon() + this.getStatusIcon() + description + "(by: " + byDate + ")";
+        return this.getTypeIcon() + this.getStatusIcon() + description + " (by: " + byDate + ")";
     }
 }
