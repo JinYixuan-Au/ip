@@ -18,6 +18,7 @@ public class Storage {
     private static String filePath;
     public static int fileTasksCounted = 0;
 
+    //Write data to the file
     public static void writeToFile(TaskList tasks){
         try {
             FileWriter fw = new FileWriter(filePath);
@@ -31,6 +32,7 @@ public class Storage {
         }
     }
 
+    //Read data from file and store the data into the taskList
     public static int readFromFile(TaskList tasks){
         try {
             Scanner sc = new Scanner(f);
@@ -56,6 +58,11 @@ public class Storage {
         return fileTasksCounted;
     }
 
+    /**
+     * Constructor of Storage Class
+     * @param filePath the destination road of the file
+     * @throws IOException
+     */
     public Storage(String filePath) throws IOException {
         f = new File(filePath);
         f.createNewFile();

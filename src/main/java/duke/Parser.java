@@ -4,7 +4,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 
 public class Parser {
-    public static String getCommand(String command) {
+    /**
+     *
+     * @param command user's input
+     * @return the parsed command line
+     * @throws DukeException throw invalid or incomplete exceptions.
+     */
+    public static String getCommand(String command) throws DukeException {
         try{
             if (command.equals("list")) {
                 return "list";
@@ -35,6 +41,11 @@ public class Parser {
         }
     }
 
+    /**
+     *
+     * @param datetime date input
+     * @return the standard format of date
+     */
     public static String getDateFormat(String datetime) {
         LocalDate date;
         String dateForm;
