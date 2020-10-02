@@ -6,6 +6,7 @@ import duke.task.Task;
 import duke.task.Todo;
 
 import java.util.ArrayList;
+import static java.util.stream.Collectors.toList;
 
 public class TaskList {
     public static ArrayList<Task> tasksList;
@@ -45,9 +46,26 @@ public class TaskList {
         }
     }
 
+    public static void findTasks(String command) {
+        String findText = command.substring(4);
+        ArrayList<Task> findTasks = (ArrayList<Task>) tasksList.stream()
+                .filter((t) -> t.getDescription().contains(findText))
+                .collect(toList());
+        System.out.println("Here are the matching tasks in your list:");
+        int count = 1;
+        for(Task task : findTasks){
+            System.out.print(count + ". ");
+            System.out.println(task);
+            count++;
+        }
+        if(count==1){
+            System.out.println("no matching result");
+        }
+    }
+
     public static void addTodoTask(String command) throws DukeException{
         String todoDescription;
-        todoDescription = command.substring(5);
+        todoDescription = command.substring(4);
         Task task = new Todo(todoDescription);
         tasksList.add(task);
         Ui.printTask(task);
@@ -79,7 +97,7 @@ public class TaskList {
     }
 
     public static void markTaskAsDone(String command, int countTasks) throws DukeException{
-        int index = Integer.parseInt(command.substring(5));
+        int index = Integer.parseInt(command.substring(4));
         if(index > countTasks){
             throw new DukeException();
         }
@@ -88,7 +106,7 @@ public class TaskList {
     }
 
     public static void delete(String command, int tasksCounted) throws DukeException {
-        int index = Integer.parseInt(command.substring(7));
+        int index = Integer.parseInt(command.substring(6));
         if(index > tasksCounted){
             throw new DukeException();
         }

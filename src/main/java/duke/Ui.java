@@ -41,6 +41,9 @@ public class Ui {
                 case "delete":
                     tasks.delete(command, tasksCounted);
                     break;
+                case "find":
+                    tasks.findTasks(command);
+                    break;
                 case "bye":
                     return;
             }

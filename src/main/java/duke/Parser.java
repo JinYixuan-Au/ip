@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 
 public class Parser {
-    public static String getCommand(String command) throws DukeException {
+    public static String getCommand(String command) {
         try{
             if (command.equals("list")) {
                 return "list";
@@ -24,8 +24,9 @@ public class Parser {
                 return "delete";
             } else if (command.contains("done")) {
                 return "done";
-            }
-            else {
+            } else if (command.contains("find")) {
+                return "find";
+            } else {
                 throw new DukeException();
             }
         } catch (DukeException e) {
