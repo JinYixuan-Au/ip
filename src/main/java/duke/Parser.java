@@ -1,5 +1,8 @@
 package duke;
 
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+
 public class Parser {
     public static String getCommand(String command) throws DukeException {
         try{
@@ -29,5 +32,17 @@ public class Parser {
             Ui.dealWithException(command);
             return "fail";
         }
+    }
+
+    public static String getDateFormat(String datetime) {
+        LocalDate date;
+        String dateForm;
+        try {
+            date = LocalDate.parse(datetime);
+            dateForm = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        } catch (Exception e) {
+            dateForm = datetime;
+        }
+        return dateForm;
     }
 }

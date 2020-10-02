@@ -1,10 +1,14 @@
 package duke.task;
 
+import duke.Parser;
+
 public class Event extends Task{
     protected String atDate;
+    protected Parser parser;
 
     public Event(String description, String atDate) {
         super(description);
+        atDate = parser.getDateFormat(atDate);
         this.atDate=atDate;
     }
 
