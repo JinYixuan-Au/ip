@@ -6,14 +6,13 @@ import java.util.Scanner;
 
 public class Ui {
     public Parser parser;
-    public static TaskList tasks = new TaskList();
     public static int tasksCounted = 0;
 
-    public void getCount(int thingsCounted){
+    public void count(int thingsCounted){
         this.tasksCounted =thingsCounted;
     }
 
-    public void interact(TaskList tasks) throws DukeException{
+    public void doTasks(TaskList tasks) throws DukeException{
         String input;
         Scanner in = new Scanner(System.in);
         while(in.hasNextLine()){
@@ -71,7 +70,7 @@ public class Ui {
         }
     }
 
-    public static void bye(){
+    public static void end(){
         System.out.println("Bye. Hope to see you again soon");
         printLine();
     }

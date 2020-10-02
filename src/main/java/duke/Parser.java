@@ -1,7 +1,7 @@
 package duke;
 
 public class Parser {
-    public static String getCommand(String command) throws DukeException{
+    public static String getCommand(String command) throws DukeException {
         try{
             if (command.equals("list")) {
                 return "list";

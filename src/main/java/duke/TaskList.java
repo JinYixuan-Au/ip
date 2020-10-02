@@ -55,13 +55,12 @@ public class TaskList {
 
     public static void addDeadlineTask(String command) throws DukeException{
         String deadlineDescription;
-        String deadlineByDate;
-        int getIndex;
-        getIndex = command.indexOf("/");
-        deadlineDescription = command.substring(9,getIndex-1);
-        deadlineByDate = command.substring(getIndex+4);
-        Task task = new Deadline(deadlineDescription, deadlineByDate);
-        //tasks[countThings] = task;
+        String deadlineDate;
+        int index;
+        index = command.indexOf("/");
+        deadlineDescription = command.substring(9,index-1);
+        deadlineDate = command.substring(index+4);
+        Task task = new Deadline(deadlineDescription, deadlineDate);
         tasksList.add(task);
         Ui.printTask(task);
 
@@ -70,10 +69,10 @@ public class TaskList {
     public static void addEventTask(String command) throws DukeException{
         String eventDescription;
         String eventDate;
-        int getIndex;
-        getIndex = command.indexOf("/");
-        eventDescription = command.substring(6,getIndex-1);
-        eventDate = command.substring(getIndex+4);
+        int index;
+        index = command.indexOf("/");
+        eventDescription = command.substring(6,index-1);
+        eventDate = command.substring(index+4);
         Task task = new Event(eventDescription, eventDate);
         tasksList.add(task);
         Ui.printTask(task);
