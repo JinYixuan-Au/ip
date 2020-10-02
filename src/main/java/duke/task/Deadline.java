@@ -16,4 +16,8 @@ public class Deadline extends Task {
     public String toString(){
         return this.getTypeIcon() + this.getStatusIcon() + description + " (by: " + byDate + ")";
     }
+
+    public String printIntoFile(){
+        return "D|" + isDone + "|" + description + "|" + this.byDate;
+    }
 }

@@ -8,11 +8,58 @@ import duke.task.Todo;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+
 public class Duke {
     static String horizontalLine = "--------------------------------------------------";
     static int thingsCounted = 0;
     //static Task[] tasks = new Task[100];
     public static ArrayList<Task> taskArray = new ArrayList<>();
+    public static final String FILE_PATH = "duke.txt";
+
+    public static void writeToFile(String FILE_PATH){
+        try {
+            File f = new File(FILE_PATH);
+            FileWriter fw = new FileWriter(FILE_PATH);
+            for(Task task: taskArray){
+                fw.write(task.printIntoFile() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Error writing file");
+        }
+    }
+
+    public static void readFromFile(String FILE_PATH){
+        try {
+            File f = new File(FILE_PATH);
+            f.createNewFile();
+            Scanner sc = new Scanner(f);
+            Task task;
+            while(sc.hasNext()){
+                String[] taskInFile = sc.nextLine().split("\\|");
+                if(taskInFile[0].equals("T")){
+                    task = new Todo(taskInFile[2]);
+                }else if(taskInFile[0].equals("D")){
+                    task = new Deadline(taskInFile[2],taskInFile[3]);
+                }else{
+                    task = new Event(taskInFile[2], taskInFile[3]);
+                }
+                thingsCounted++;
+                if(taskInFile[1].equals("true")){
+                    task.taskDone();
+                }
+                taskArray.add(task);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Error reading file");
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
 
     public static void storeTextAndList() throws DukeException {
         String command;
@@ -56,19 +103,18 @@ public class Duke {
     }
 
     public static void dealWithException(String text){
-        switch (text) {
-            case "todo":
-                System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
-                break;
-            case "deadline":
-                System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
-                break;
-            case "event":
-                System.out.println("☹ OOPS!!! The description of a event cannot be empty.");
-                break;
-            default:
-                System.out.println(("☹ OOPS!!! I'm sorry, but I don't know what that means :-("));
-                break;
+        if (text.equals("todo")) {
+            System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+        } else if (text.equals("deadline")) {
+            System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
+        } else if (text.equals("event")) {
+            System.out.println("☹ OOPS!!! The description of a event cannot be empty.");
+        } else if(text.contains("done")){
+            System.out.println("☹ OOPS!!! The index is out of bound");
+        } else if(text.contains("delete")){
+            System.out.println("☹ OOPS!!! The index is out of bound");
+        } else {
+            System.out.println(("☹ OOPS!!! I'm sorry, but I don't know what that means :-("));
         }
     }
 
@@ -152,7 +198,9 @@ public class Duke {
     }
 
     public static void main(String[] args) throws DukeException {
+        readFromFile(FILE_PATH);
         System.out.println(horizontalLine + "\nHello! I'm Duke\n" + "What can I do for you?\n" + horizontalLine);
         storeTextAndList();
+        writeToFile(FILE_PATH);
     }
 }

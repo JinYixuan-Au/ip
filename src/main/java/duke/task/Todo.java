@@ -13,4 +13,8 @@ public class Todo extends Task{
     public String toString(){
         return this.getTypeIcon() + this.getStatusIcon() + description;
     }
+
+    public String printIntoFile(){
+        return "T|" + isDone + "|" + description;
+    }
 }

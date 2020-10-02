@@ -12,7 +12,11 @@ public class Event extends Task{
         return "[E]";
     }
 
-    public String toString(){
+    public String toString() {
         return this.getTypeIcon() + this.getStatusIcon() + description + " (at: " + atDate + ")";
+    }
+
+    public String printIntoFile(){
+        return "E|" + isDone + "|" + description + "|" + this.atDate;
     }
 }
