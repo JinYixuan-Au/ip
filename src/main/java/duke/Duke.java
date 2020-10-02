@@ -1,11 +1,18 @@
-import java.util.Arrays;
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.util.Scanner;
+
 public class Duke {
     static String horizontalLine = "--------------------------------------------------";
     static int thingsCounted = 0;
     static Task[] tasks = new Task[100];
 
-    public static void storeTextAndList() throws DukeException{
+    public static void storeTextAndList() throws DukeException {
         String text;
         Scanner in = new Scanner(System.in);
         text = in.nextLine();
@@ -56,7 +63,7 @@ public class Duke {
         }
     }
 
-    public static void addTodoTask(String text) throws DukeException{
+    public static void addTodoTask(String text) throws DukeException {
         String todoDescription;
         if(text.equals("todo")){
             throw new DukeException();
@@ -68,7 +75,7 @@ public class Duke {
         printTask(task);
     }
 
-    public static void addDeadlineTask (String text) throws DukeException{
+    public static void addDeadlineTask (String text) throws DukeException {
         String deadlineDescription;
         String deadlineByDate;
         int getIndex;
@@ -84,7 +91,7 @@ public class Duke {
         printTask(task);
     }
 
-    public static void addEventTask(String text) throws DukeException{
+    public static void addEventTask(String text) throws DukeException {
         String eventDescription;
         String eventAtDate;
         int getIndex;
@@ -121,8 +128,9 @@ public class Duke {
         System.out.println(horizontalLine);
     }
 
-    public static void main(String[] args) throws DukeException{
-        System.out.println(horizontalLine + "\nHello! I'm Duke\n" + "What can I do for you?\n" + horizontalLine);
+    public static void main(String[] args) throws DukeException {
+        System.out.println(horizontalLine + "\nHello! I'm Duke.Duke\n" + "What can I do for you?\n" + horizontalLine);
         storeTextAndList();
     }
+
 }
