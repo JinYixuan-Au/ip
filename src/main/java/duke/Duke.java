@@ -13,33 +13,34 @@ public class Duke {
     static Task[] tasks = new Task[100];
 
     public static void storeTextAndList() throws DukeException {
-        String text;
+        String command;
         Scanner in = new Scanner(System.in);
-        text = in.nextLine();
-        while (!text.equals("bye")) {
+        command = in.nextLine();
+        while (!command.equals("bye")) {
             System.out.println(horizontalLine);
             try {
-                if (text.equals("list")) {
+                if (command.equals("list")) {
                     listTask();
-                } else if (text.contains("done")) {
-                    int index = Integer.parseInt(text.substring(5));
-                    doneTask(index);
-                } else {
-                    if (text.contains("todo")) {
-                        addTodoTask(text);
-                    } else if (text.contains("deadline")) {
-                        addDeadlineTask(text);
-                    } else if (text.contains("event")) {
-                        addEventTask(text);
-                    } else {
+                } else if (command.contains("done")) {
+                    int index = Integer.parseInt(command.substring(5));
+                    if(index > thingsCounted){
                         throw new DukeException();
                     }
+                    doneTask(index);
+                } else if (command.contains("todo")) {
+                    addTodoTask(command);
+                } else if (command.contains("deadline")) {
+                    addDeadlineTask(command);
+                } else if (command.contains("event")) {
+                    addEventTask(command);
+                } else {
+                    throw new DukeException();
                 }
             }catch (DukeException e) {
-                dealWithException(text);
+                dealWithException(command);
             }
                 System.out.println(horizontalLine);
-                text = in.nextLine();
+                command = in.nextLine();
             }
             System.out.println(horizontalLine);
             System.out.println("Bye. Hope to see you again soon");
@@ -129,8 +130,7 @@ public class Duke {
     }
 
     public static void main(String[] args) throws DukeException {
-        System.out.println(horizontalLine + "\nHello! I'm Duke.Duke\n" + "What can I do for you?\n" + horizontalLine);
+        System.out.println(horizontalLine + "\nHello! I'm Duke\n" + "What can I do for you?\n" + horizontalLine);
         storeTextAndList();
     }
-
 }
