@@ -1,26 +1,39 @@
-# duke project template
+# User Guide
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+## Introduction
+Duke is an application that is designed to help users to keep track of different types of tasks (i.e. todos, deadlines, events).
 
-## Setting up in Intellij
+## Quick start
+1. Ensure you have Java 11 installed in your Computer.
+1. Download the latest CS2113_IP.jar from [here](https://github.com/Cao-Zeyu/ip/releases/tag/A-Release).
+1. Copy the file to the folder you want to use as the home folder for your Duke.
+1. Double-click the file and open a command window in the home folder to run the jar file.
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+## Features 
+#### Add `todo`, `deadline`, `event`
+- add todo task: 'todo'
+  Format: 'todo read book'
+- add deadline task: 'deadline'
+  Format: 'deadline quiz /by Friday 11pm'
+- add event task: 'event'
+  Format: 'event group meeting /at Sunday 5pm'
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project dialog first)
-1. Set up the correct JDK version, as follows:
-   1. Click `Configure` > `Structure for New Projects` and then `Project Settings` > `Project` > `Project SDK`
-   1. If JDK 11 is listed in the drop down, select it. If it is not, click `New...` and select the directory where you installed JDK 11
-   1. Click `OK`
-1. Import the project into Intellij as follows:
-   1. Click `Open or Import`.
-   1. Select the project directory, and click `OK`
-   1. If there are any further prompts, accept the defaults.
-1. After the importing is complete, locate the `src/main/java/duke.java` file, right-click it, and choose `Run duke.main()`. If the setup is correct, you should see something like the below:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+#### List 'list'
+Show the list of the tasks
+Format:'list'
+
+#### Delete 'delete'
+Delete a task from the task list by index
+Format: 'delete 3'
+
+#### Mark as done 'done'
+Mark the task as done by index
+Format: 'done 2'
+
+####Find 'find'
+Find a task in the list by keywords
+Format: 'find book'
+
+####Bye 'bye'
+Exit the program
+Format: 'bye'
